@@ -1,19 +1,93 @@
 import React from 'react';
-import { Route, Link } from 'react-router-dom'
-import Home from '../home'
-import About from '../about'
+import { Route, Link, Switch } from 'react-router-dom'
+import Game from '../game'
+import Highscores from '../highscores'
+
+const styles = {
+  container: {
+    display: 'flex',
+    flex: 1,
+    flexDirection: 'column',
+    alignItems: 'center',
+    minHeight: '100vh',
+    maxWidth: '100vw',
+  },
+  wrapper: {
+    display: 'flex',
+    flex: 1,
+    justifyContent: 'center',
+    width: '100%',
+    maxWidth: 1200,
+  },
+  navBar: {
+    display: 'flex',
+    paddingTop: 16,
+    paddingBottom: 16,
+    width: '100%',
+    alignItems: 'center',
+    justifyContent: 'center',
+    backgroundColor: '#203442',
+  },
+  navWrapper: {
+    display: 'flex',
+    justifyContent: 'space-between',
+    flex: 1,
+    width: '100%',
+    maxWidth: 1200,
+  },
+  navContent: {
+    display: 'flex',
+    flex: 1,
+    left: {
+      alignItems: 'flex-start'
+    },
+    right: {
+      alignItems: 'flex-end'
+    }
+  },
+  logo: {
+    color: '#FFFFFF',
+    fontSize: 24,
+    fontWeight: 300,
+  },
+  link: {
+    color: '#FFFFFF',
+    fontSize: 20,
+    fontWeight: 100,
+    marginLeft: 16,
+  },
+  footer: {
+    position: 'absolute',
+    bottom: 0,
+    textAlign: 'center',
+  }
+}
 
 const App = () => (
-  <div>
-    <header>
-      <Link to="/">Home</Link>
-      <Link to="/about-us">About</Link>
-    </header>
+  <div style={styles.container}>
+    <nav style={styles.navBar}>
+      <div style={styles.navWrapper}>
+        <div style={[styles.navContent, styles.navContent.left]}>
+          <span style={styles.logo}>KulrSpottr</span>
+        </div>
+        <div style={[styles.navContent, styles.navContent.right]}>
+          <Link to="/" style={styles.link}>Game</Link>
+          <span style={styles.link}>&middot;</span>
+          <Link to="/highscores" style={styles.link}>Highscores</Link>
+        </div>
+      </div>
+    </nav>
 
-    <main>
-      <Route exact path="/" component={Home} />
-      <Route exact path="/about-us" component={About} />
+    <main style={styles.wrapper}>
+      <Switch>
+        <Route exact path="/" component={Game} />
+        <Route exact path="/highscores" component={Highscores} />
+      </Switch>
     </main>
+
+    <footer style={styles.footer}>
+      <p>By <a href={'https://www.oesterkilde.dk?ref=kulrspottr'}>Kevin Østerkilde</a></p>
+    </footer>
   </div>
 )
 

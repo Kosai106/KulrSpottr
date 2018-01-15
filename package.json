@@ -1,11 +1,29 @@
 {
-  "name": "create-react-app-redux",
-  "version": "0.1.0",
+  "name": "kulrspottr",
+  "version": "1.0.0",
+  "description": "",
+  "homepage": "",
+  "author": "Kevin Østerkilde <kevin@oesterkilde.dk> (http://oesterkilde.dk/)",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Kosai106/KulrSpottr.git"
+  },
   "private": true,
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test --env=jsdom",
+    "eject": "react-scripts eject"
+  },
   "devDependencies": {
     "react-scripts": "^1.0.17"
   },
   "dependencies": {
+    "lodash": "^4.17.4",
+    "material-ui": "^0.20.0",
+    "node-uuid": "^1.4.8",
+    "proptypes": "^1.1.0",
     "react": "^16.2.0",
     "react-dom": "^16.2.0",
     "react-redux": "^5.0.6",
@@ -13,14 +31,8 @@
     "react-router-dom": "^4.2.2",
     "react-router-redux": "next",
     "redux": "^3.7.2",
+    "redux-persist": "^4.9.1",
     "redux-thunk": "^2.2.0",
     "sanitize.css": "^5.0.0"
-  },
-  "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test --env=jsdom",
-    "eject": "react-scripts eject"
-  },
-  "homepage": "https://cra-redux-router-thunk.herokuapp.com"
+  }
 }
