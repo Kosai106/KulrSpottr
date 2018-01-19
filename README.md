@@ -34,6 +34,10 @@ npm run start
 ```
 Now visit `localhost:3000` if it doesn't open automatically.
 
+## Issues
+
+Currently there's [one major bug](https://github.com/Kosai106/KulrSpottr/issues/2) that I can't seem to solve no matter what I do - The whole colour function will have to be rewritten most likely.
+
 ## Credits
 
 Made with :heart: and :coffee: by [Kevin Østerkilde](https://www.oesterkilde.dk?ref=github).
