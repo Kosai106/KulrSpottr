@@ -1,22 +1,39 @@
-<p align="center"><a href="https://medium.com/@notrab/getting-started-with-create-react-app-redux-react-router-redux-thunk-d6a19259f71f"><img src="https://i.imgur.com/PATsTx2.png" title="View tutorial" alt="React, React Router, Redux and Redux Thunk" width="900"></a></p>
+# [KulrSpottr](https://kosai106.github.io/KulrSpottr/)
 
-[![Dependency Status](https://dependencyci.com/github/notrab/create-react-app-redux/badge)](https://dependencyci.com/github/notrab/create-react-app-redux)
+## Introduction
 
-* Tutorial: [Getting started with create-react-app, Redux, React Router & Redux Thunk](https://medium.com/@notrab/getting-started-with-create-react-app-redux-react-router-redux-thunk-d6a19259f71f)
-* Example: [View on Heroku](https://cra-redux-router-thunk.herokuapp.com/) 🙌
+For this project, I went with ReactJS and Redux, as it seems like the best solution for the task at hand.
+
+* `Create-React-App` was chosen so I wouldn't have to worry too much about configuration.
+* `Redux-Persist` is used to persist and store highscores in localStorage.
+* `Lodash` is used to sort the highscores, as well as limit the results to the top 10 scores.
+* `Material-UI` was added later in the project to save some time on creating basic components.
+
+I have to admit, it's not my best or cleanest code, I was stressed out during the development of this, but it does get the job done.
 
 ## Installation
 
+_NOTE:_ You may need to have **CRA** installed globally.
+
 ```bash
-git clone https://github.com/notrab/create-react-app-redux.git
-cd create-react-app-redux
-yarn
+npm install -g create-react-app
 ```
 
-## Get started
+```bash
+yarn
+or
+npm install
+```
+
+## Running the project
 
 ```bash
 yarn start
+or
+npm run start
 ```
+Now visit `localhost:3000` if it doesn't open automatically.
 
-This boilerplate is built using [create-react-app](https://github.com/facebookincubator/create-react-app) so you will want to read the User Guide for more goodies.
+## Credits
+
+Made with :heart: and :coffee: by [Kevin Østerkilde](https://www.oesterkilde.dk?ref=github).

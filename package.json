@@ -1,7 +1,7 @@
 {
   "name": "kulrspottr",
   "version": "1.0.0",
-  "description": "",
+  "description": "Done as part of a coding challenge for Adidas",
   "homepage": "http://kosai106.github.io/KulrSpottr",
   "author": "Kevin Østerkilde <kevin@oesterkilde.dk> (http://oesterkilde.dk/)",
   "license": "MIT",
@@ -9,7 +9,10 @@
     "type": "git",
     "url": "https://github.com/Kosai106/KulrSpottr.git"
   },
-  "private": true,
+  "bugs": {
+    "url": "https://github.com/Kosai106/KulrSpottr/issues"
+  },
+  "private": false,
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",

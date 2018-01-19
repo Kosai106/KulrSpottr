@@ -121,9 +121,9 @@ class Game extends Component {
 			container: {
 				display: 'flex',
 				flexDirection: 'column',
-				justifyContent: 'center',
 				alignItems: 'center',
 				maxWidth: '100vw',
+				padding: 16,
 			},
 			details: {
 				width: '100%',

@@ -16,7 +16,7 @@ const styles = {
 
 const Board = (props) => {
 	return (
-		<div style={styles.board}>
+		<div style={styles.board} className={'game-board'}>
 			{props.children}
 		</div>
 	)

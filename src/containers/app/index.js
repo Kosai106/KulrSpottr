@@ -21,15 +21,14 @@ const styles = {
   },
   navBar: {
     display: 'flex',
-    paddingTop: 16,
-    paddingBottom: 16,
+    padding: 16,
     width: '100%',
-    alignItems: 'center',
     justifyContent: 'center',
     backgroundColor: '#203442',
   },
   navWrapper: {
     display: 'flex',
+    alignItems: 'center',
     justifyContent: 'space-between',
     flex: 1,
     width: '100%',
@@ -71,9 +70,9 @@ const App = () => (
           <span style={styles.logo}>KulrSpottr</span>
         </div>
         <div style={[styles.navContent, styles.navContent.right]}>
-          <Link to="/" style={styles.link}>Game</Link>
+          <Link to={`${process.env.PUBLIC_URL}/`} style={styles.link}>Game</Link>
           <span style={styles.link}>&middot;</span>
-          <Link to="/highscores" style={styles.link}>Highscores</Link>
+          <Link to={`${process.env.PUBLIC_URL}/highscores`} style={styles.link}>Highscores</Link>
         </div>
       </div>
     </nav>
