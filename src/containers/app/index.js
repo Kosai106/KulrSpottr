@@ -80,8 +80,8 @@ const App = () => (
 
     <main style={styles.wrapper}>
       <Switch>
-        <Route exact path="KulrSpottr/" component={Game} />
-        <Route exact path="KulrSpottr/highscores" component={Highscores} />
+        <Route exact path={`${process.env.PUBLIC_URL}/`} component={Game} />
+        <Route exact path={`${process.env.PUBLIC_URL}/highscores`} component={Highscores} />
       </Switch>
     </main>
 
