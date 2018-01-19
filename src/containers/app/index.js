@@ -71,9 +71,9 @@ const App = () => (
           <span style={styles.logo}>KulrSpottr</span>
         </div>
         <div style={[styles.navContent, styles.navContent.right]}>
-          <Link to="KulrSpottr/" style={styles.link}>Game</Link>
+          <Link to="/" style={styles.link}>Game</Link>
           <span style={styles.link}>&middot;</span>
-          <Link to="KulrSpottr/highscores" style={styles.link}>Highscores</Link>
+          <Link to="/highscores" style={styles.link}>Highscores</Link>
         </div>
       </div>
     </nav>
