@@ -1,17 +1,15 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 
-const _getSize = (grid: number) => {
-	return 100 / grid
-}
-
 const Tile = (props) => {
-	const isHighlighted = props.highlighted ? props.color[1] : props.color[0]
+	const isHighlighted = props.highlighted ? props.altColor : props.color
+	const getSize = `${100 / props.grid}%`
+
 	return (
 		<div
 			style={{
-				width: `${_getSize(props.grid)}%`,
-				height: `${_getSize(props.grid)}%`,
+				width: getSize,
+				height: getSize,
 				boxShadow: `inset 0 0 0 1px #FAFAFA`,
 				backgroundColor: isHighlighted,
 				display: 'flex',
@@ -25,9 +23,10 @@ const Tile = (props) => {
 }
 
 Tile.propTypes = {
-	highlighted: PropTypes.number.isRequired,
 	grid: PropTypes.number.isRequired,
-	color: PropTypes.array.isRequired,
+	color: PropTypes.string.isRequired,
+	altColor: PropTypes.string,
+	highlighted: PropTypes.number.isRequired,
 }
 
 export default Tile

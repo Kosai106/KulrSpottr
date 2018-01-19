@@ -4,7 +4,8 @@ import { persistStore, autoRehydrate } from 'redux-persist'
 import thunk from 'redux-thunk'
 import createHistory from 'history/createBrowserHistory'
 import rootReducer from './modules'
-import { loadState, saveState } from './utilities/localStorage'
+// import { loadState, saveState } from './utilities/localStorage'
+import { loadState } from './utilities/localStorage'
 
 export const history = createHistory()
 

@@ -1,4 +1,5 @@
 import React from 'react'
+import store from '../../store'
 import sortBy from 'lodash/sortBy'
 import reverse from 'lodash/reverse'
 
@@ -29,34 +30,23 @@ const styles = {
 	}
 }
 
-const data = [
-	{ id: 1, name: "Ericka MacIlraith", score: 21 },
-	{ id: 2, name: "Lemmy Hayer", score: 8 },
-	{ id: 3, name: "Georgina McCullock", score: 20 },
-	{ id: 4, name: "Griffith Abelson", score: 3 },
-	{ id: 5, name: "Ellen Bickmore", score: 16 },
-	{ id: 6, name: "Claudette Dyche", score: 24 },
-	{ id: 7, name: "Brade Kraft", score: 21 },
-	{ id: 8, name: "Hadrian Liepmann", score: 11 },
-	{ id: 9, name: "Alfons O'Currigan", score: 2 },
-	{ id: 10, name: "Gwenneth Sliman", score: 19 },
-	{ id: 11, name: "John Doe", score: 1 }
-]
+const ScoreRow = (props) => {
+	const { name, score } = props.user
+	return (
+		<li style={styles.listItem}>
+			<span style={styles.playerName}>
+				{name}
+			</span>
+			<span style={styles.playerScore}>
+				Score: {score}
+			</span>
+		</li>
+	)
+}
 
-const users = reverse(sortBy(data, 'score')).slice(0, 10)
-
-const ScoreRow = (props) => (
-	<li style={styles.listItem}>
-		<span style={styles.playerName}>
-			{props.user.name}
-		</span>
-		<span style={styles.playerScore}>
-			Score: {props.user.score}
-		</span>
-	</li>
-)
-
-const Highscores = (props) => {
+const Highscores = () => {
+	const data = store.getState().highscore
+	const users = reverse(sortBy(data, 'score')).slice(0, 10)
 	return (
 		<div style={styles.container}>
 			<ul style={styles.list}>

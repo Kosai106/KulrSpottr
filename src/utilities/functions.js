@@ -1,4 +1,4 @@
-const altColor = (color: string, percent: number) => {
+const getAltColor = (color: string, percent: number) => {
 	let R = parseInt(color.substring(1, 3), 16)
 	let G = parseInt(color.substring(3, 5), 16)
 	let B = parseInt(color.substring(5, 7), 16)
@@ -18,18 +18,13 @@ const altColor = (color: string, percent: number) => {
 	return `#${RR}${GG}${BB}`
 }
 
-const getRandomColor = (percent: number) => {
-	const maxSteps = 31
-	const col = `#${Math.floor(Math.random() * 16777215).toString(16)}`
-	return [
-		col,
-		altColor(col, (maxSteps - percent))
-	]
+const getRandomColor = () => {
+	return `#${Math.floor(Math.random() * 16777215).toString(16)}`
 }
 
-const getRandomTile = (grid: array, score: number) => {
+const getRandomTile = (grid: array, step: number) => {
 	const min = Math.ceil(0)
-	const max = (grid[score] * grid[score])
+	const max = (grid[step] * grid[step])
 	return Math.floor(Math.random() * max) + min
 }
 
@@ -44,6 +39,7 @@ const isHighlighted = (index: number, highlight: number) => {
 
 export {
 	getRandomColor,
+	getAltColor,
 	getRandomTile,
 	isHighlighted
 }
