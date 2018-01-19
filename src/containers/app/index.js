@@ -71,17 +71,17 @@ const App = () => (
           <span style={styles.logo}>KulrSpottr</span>
         </div>
         <div style={[styles.navContent, styles.navContent.right]}>
-          <Link to="/" style={styles.link}>Game</Link>
+          <Link to="KulrSpottr/" style={styles.link}>Game</Link>
           <span style={styles.link}>&middot;</span>
-          <Link to="/highscores" style={styles.link}>Highscores</Link>
+          <Link to="KulrSpottr/highscores" style={styles.link}>Highscores</Link>
         </div>
       </div>
     </nav>
 
     <main style={styles.wrapper}>
       <Switch>
-        <Route exact path="/" component={Game} />
-        <Route exact path="/highscores" component={Highscores} />
+        <Route exact path="KulrSpottr/" component={Game} />
+        <Route exact path="KulrSpottr/highscores" component={Highscores} />
       </Switch>
     </main>
 
