@@ -6,7 +6,8 @@ import throttle from 'lodash/throttle'
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider'
 import getMuiTheme from 'material-ui/styles/getMuiTheme'
 import store, { history } from './store'
-import { loadState, saveState } from './utilities/localStorage'
+// import { loadState, saveState } from './utilities/localStorage'
+import { saveState } from './utilities/localStorage'
 
 import App from './containers/app'
 

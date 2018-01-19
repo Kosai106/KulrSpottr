@@ -5,9 +5,10 @@ import store from '../../store'
 import { addHighscore, addHighscoreAsync } from '../../modules/highscore'
 import Dialog from 'material-ui/Dialog'
 import FlatButton from 'material-ui/FlatButton'
+import TextField from 'material-ui/TextField'
 
 import { Board, Tile, Score, Title } from '../../components'
-import { getRandomColor, getRandomTile, isHighlighted } from '../../utilities/functions'
+import { getRandomColor, getAltColor, getRandomTile, isHighlighted } from '../../utilities/functions'
 
 class Game extends Component {
 	constructor(props) {
@@ -15,14 +16,20 @@ class Game extends Component {
 		this.startGame = this.startGame.bind(this)
 		this.handleTileClick = this.handleTileClick.bind(this)
 		this.state = {
-			name: "Marianna D'Amico Jauregui",
-			step: 0,
-			grid: [2, 3, 3, 4, 4, 4, 5, 5, 5, 5, 6, 6, 6, 6, 6, 7, 7, 7, 7, 7, 7, 8, 8, 8, 8, 8, 8, 8, 9, 9, 9, 9],
-			highlighted: undefined,
-			color: [],
+			gameLogic: {
+				grid: [2, 3, 3, 4, 4, 4, 5, 5, 5, 5, 6, 6, 6, 6, 6, 7, 7, 7, 7, 7, 7, 8, 8, 8, 8, 8, 8, 8, 9, 9, 9, 9],
+				step: 0,
+				maxStep: 0,
+				color: '',
+				highlighted: 0,
+			},
+
+			highscore: {
+				name: "John Doe",
+			},
 
 			modal: {
-				open: false,
+				isOpen: false,
 			}
 		}
 	}
@@ -32,45 +39,84 @@ class Game extends Component {
 	}
 
 	startGame = () => {
-		this.setState({
-			step: 0,
-			highlighted: getRandomTile(this.state.grid, this.state.step),
-			color: getRandomColor(this.state.step),
-		})
-		console.log(store.getState().highscore)
+		const { grid, step } = this.state.gameLogic
+		this.setState(prevState => ({
+			...prevState,
+			gameLogic: {
+				...prevState.gameLogic,
+				step: 0,
+				maxStep: grid.length,
+				color: getRandomColor(step),
+				highlighted: getRandomTile(grid, step),
+			},
+			highscore: {
+				name: "John Doe",
+			}
+		}))
+	}
+
+	nextLevel = () => {
+		const { grid, step } = this.state.gameLogic
+		this.setState(prevState => ({
+			gameLogic: {
+				...prevState.gameLogic,
+				step: step + 1,
+				color: getRandomColor(step),
+				highlighted: getRandomTile(grid, step),
+			}
+		}))
+	}
+
+	winGame = () => {
+		this.setState(prevState => ({
+			...prevState,
+			highscore: {
+				name: "John Doe",
+			}
+		}))
+		this.handleModalOpen()
+	}
+
+	loseGame = () => {
+		this.setState(prevState => ({
+			...prevState,
+			highscore: {
+				name: "John Doe",
+			}
+		}))
+		this.handleModalOpen()
 	}
 
 	handleModalOpen = () => {
-		const { name, step } = this.state
-		this.props.addHighscore(name, step)
-		this.setState({ modal: { open: true } })
+		this.setState({ modal: { isOpen: true } })
 	}
 
 	handleModalClose = () => {
-		this.setState({ modal: { open: false } })
+		const { name } = this.state.highscore
+		const { step } = this.state.gameLogic
+
+		this.setState({ modal: { isOpen: false } })
+		this.props.addHighscore(name, step)
+		this.startGame()
 	}
 
 	handleTileClick = (index: number) => {
-		const { step, highlighted, grid } = this.state
-		if (step === 31) {
-			alert(`Congratulations!\n\nA winner is you.`)
-			//TODO: Replace this with a modal allowing for name input
+		const { step, maxStep, highlighted } = this.state.gameLogic
+		if (step === maxStep) {
+			this.winGame()
 		} else {
 			if (index === highlighted) {
-				this.setState({
-					step: step + 1,
-					highlighted: getRandomTile(grid, step),
-					color: getRandomColor(step),
-				})
+				this.nextLevel()
 			} else {
-				//alert(`Oh no!\n\nAll your base are belong to us.\n\nYou got a score of: ${step}`)
-				this.handleModalOpen()
+				this.loseGame()
 			}
 		}
 	}
 
 	render() {
-		const { step, grid, color, highlighted } = this.state
+		const { grid, step, maxStep, color, highlighted } = this.state.gameLogic
+		const { isOpen } = this.state.modal
+
 		const styles = {
 			container: {
 				display: 'flex',
@@ -103,13 +149,18 @@ class Game extends Component {
 		return (
 			<section style={styles.container}>
 				<Dialog
-					title="Oh no"
-					actions={[<FlatButton label="Submit" primary={true} onClick={this.handleModalClose} />]}
+					title='Oh no'
+					actions={[<FlatButton label='Submit' primary={true} onClick={this.handleModalClose} />]}
 					modal={false}
-					open={this.state.modal.open}
+					open={isOpen}
 					onRequestClose={this.handleClose}
 				>
 					All your base are belong to us. You got a score of: {step}
+					<TextField
+						name={'Name'}
+						autoFocus={true}
+						onChange={(e) => this.setState({ highscore: { name: e.target.value } })}
+					/>
 				</Dialog>
 				<div style={styles.details}>
 					<Title>KulrSpottr</Title>
@@ -123,6 +174,7 @@ class Game extends Component {
 									key={i}
 									grid={grid[step]}
 									color={color}
+									altColor={getAltColor(color, (maxStep - step))}
 									highlighted={isHighlighted(i, highlighted)}
 									onClick={(e) => this.handleTileClick(i)}
 								/>
@@ -139,8 +191,7 @@ class Game extends Component {
 }
 
 const mapStateToProps = state => ({
-	name: state.name,
-	score: state.steps,
+	name: state.highscore.name,
 })
 
 const mapDispatchToProps = dispatch => bindActionCreators({
