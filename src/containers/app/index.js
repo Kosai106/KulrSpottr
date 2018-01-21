@@ -41,6 +41,7 @@ const styles = {
       alignItems: 'flex-start'
     },
     right: {
+      flex: 0,
       alignItems: 'flex-end'
     }
   },
@@ -62,14 +63,22 @@ const styles = {
   }
 }
 
+//NOTE: Neccessary hack for Firefox
+const leftContentStyle = Object.assign({},
+  styles.navContent, styles.navContent.left
+)
+const rightContentStyle = Object.assign({},
+  styles.navContent, styles.navContent.right
+)
+
 const App = () => (
   <div style={styles.container}>
     <nav style={styles.navBar}>
       <div style={styles.navWrapper}>
-        <div style={[styles.navContent, styles.navContent.left]}>
+        <div style={leftContentStyle}>
           <span style={styles.logo}>KulrSpottr</span>
         </div>
-        <div style={[styles.navContent, styles.navContent.right]}>
+        <div style={rightContentStyle}>
           <Link to={`${process.env.PUBLIC_URL}/`} style={styles.link}>Game</Link>
           <span style={styles.link}>&middot;</span>
           <Link to={`${process.env.PUBLIC_URL}/highscores`} style={styles.link}>Highscores</Link>
