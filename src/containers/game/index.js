@@ -11,26 +11,21 @@ import { Board, Tile, Score, Title } from '../../components'
 import { getRandomColor, getAltColor, getRandomTile, isHighlighted } from '../../utilities/functions'
 
 class Game extends Component {
-	constructor(props) {
-		super(props)
-		this.startGame = this.startGame.bind(this)
-		this.handleTileClick = this.handleTileClick.bind(this)
-		this.state = {
-			gameLogic: {
-				grid: [2, 3, 3, 4, 4, 4, 5, 5, 5, 5, 6, 6, 6, 6, 6, 7, 7, 7, 7, 7, 7, 8, 8, 8, 8, 8, 8, 8, 9, 9, 9, 9],
-				step: 0,
-				maxStep: 0,
-				color: '',
-				highlighted: 0,
-			},
+	state = {
+		gameLogic: {
+			grid: [2, 3, 3, 4, 4, 4, 5, 5, 5, 5, 6, 6, 6, 6, 6, 7, 7, 7, 7, 7, 7, 8, 8, 8, 8, 8, 8, 8, 9, 9, 9, 9],
+			step: 0,
+			maxStep: 0,
+			color: '',
+			highlighted: 0,
+		},
 
-			highscore: {
-				name: "John Doe",
-			},
+		highscore: {
+			name: "John Doe",
+		},
 
-			modal: {
-				isOpen: false,
-			}
+		modal: {
+			isOpen: false,
 		}
 	}
 
@@ -156,6 +151,7 @@ class Game extends Component {
 					onRequestClose={this.handleClose}
 				>
 					All your base are belong to us. You got a score of: {step}
+					<br />
 					<TextField
 						name={'Name'}
 						autoFocus={true}
